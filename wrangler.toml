@@ -1,0 +1,7 @@
+account_id = "79736661a309d34ac50cd7574be956f3"
+name = "notes"
+route = ""
+type = "webpack"
+webpack_config = "webpack.dev.js"
+workers_dev = true
+zone_id = ""

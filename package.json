@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "My notes on CloudFlare Workers",
+  "homepage": "https://github.com/waka/note",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waka/note.git"
+  },
+  "bugs": {
+    "url": "https://github.com/waka/note/issues"
+  },
+  "license": "MIT",
+  "author": "yo_waka <y.wakahara@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pigeon": "file:../pigeon"
+  }
+}
