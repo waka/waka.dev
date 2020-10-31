@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2020",
+    "module": "commonjs",
+    /*"outDir": "./dist",*/
+    /*"rootDir": "./src",*/
+
+    /* Libraries */
+    "jsx": "react",
+    "lib": [
+      "ES2020",
+      "WebWorker"
+    ],
+    "types": [
+      "@types/node",
+      "@types/react",
+      "@types/react-dom",
+      "@cloudflare/workers-types"
+    ],
+
+    /* Strict Type-Checking Options */
+    "strict": false,
+    /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitAny": true,
+    /* Enable strict null checks. */
+    "strictNullChecks": true,
+    /* Enable strict checking of function types. */
+    "strictFunctionTypes": true,
+    /* Enable strict checking of property initialization in classes. */
+    "strictPropertyInitialization": false,
+    /* Raise error on 'this' expressions with an implied 'any' type. */
+    "noImplicitThis": true,
+    /* Parse in strict mode and emit "use strict" for each source file. */
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    /* Report errors on unused locals. */
+    "noUnusedLocals": true,
+    /* Report errors on unused parameters. */
+    "noUnusedParameters": true,
+    /* Report error when not all code paths in function return a value. */
+    "noImplicitReturns": true,
+    /* Report errors for fallthrough cases in switch statement. */
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

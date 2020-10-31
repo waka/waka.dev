@@ -1,10 +1,4 @@
-/target
-/dist
-**/*.rs.bk
-Cargo.lock
-bin/
-pkg/
-wasm-pack.log
+.cargo-ok
+dist/
 worker/
 node_modules/
-.cargo-ok

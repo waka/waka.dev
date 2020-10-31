@@ -1,7 +1,6 @@
-account_id = "79736661a309d34ac50cd7574be956f3"
-name = "notes"
-route = ""
+name = "blog"
 type = "webpack"
-webpack_config = "webpack.dev.js"
+webpack_config = "webpack.config.js"
 workers_dev = true
+route = ""
 zone_id = ""
