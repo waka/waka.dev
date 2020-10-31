@@ -9,7 +9,9 @@ const getConfig = (): Config => {
   return {
     site: {
       title: 'waka.dev',
-      author: '@yo_waka'
+      author: '@yo_waka',
+      faviconURL: 'https://raw.githubusercontent.com/waka/waka.dev/master/assets/favicon.ico',
+      iconURL: 'https://raw.githubusercontent.com/waka/waka.dev/master/assets/waka.png'
     },
     github: {
       accessToken,
@@ -23,6 +25,7 @@ const getConfig = (): Config => {
 const getResponse = async (request: Request): Promise<Response> => {
   try {
     const config = getConfig();
+    // TODO cache response
     const { response, status } = await handleEvent(request.url, config);
     return new Response(response, {
       status,

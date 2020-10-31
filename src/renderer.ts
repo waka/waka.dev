@@ -6,14 +6,14 @@ import Index from './components/index';
 import Archive from './components/archive';
 import Show from './components/show';
 import { NotFoundError } from './errors';
-import { Config } from './types';
+import { Config, Site } from './types';
 
 const renderIndex = async (config: Config): Promise<string> => {
   const issues = await getIssues(config.github);
   const content = ReactDOMServer.renderToString(
-    React.createElement(Index, { issues, site: config.site })
+    React.createElement(Index, { issues: issues.slice(0, 5), site: config.site })
   );
-  return toWholeHTML(config.site.title, content);
+  return toWholeHTML(config.site, content);
 };
 
 const renderArchive = async (config: Config): Promise<string> => {
@@ -21,7 +21,7 @@ const renderArchive = async (config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Archive, { issues, site: config.site })
   );
-  return toWholeHTML(config.site.title, content);
+  return toWholeHTML(config.site, content);
 };
 
 const renderShow = async (title: string, config: Config): Promise<string> => {
@@ -32,18 +32,18 @@ const renderShow = async (title: string, config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Show, { issue, site: config.site })
   );
-  return toWholeHTML(title, content);
+  return toWholeHTML(config.site, content);
 };
 
-const renderFeed = (_config: Config): string => {
-  return 'feed';
+const renderFeed = (config: Config): string => {
+  return toWholeHTML(config.site, 'feed');
 };
 
-const renderNotFound = (): string => {
-  return 'not found';
+const renderNotFound = (config: Config): string => {
+  return toWholeHTML(config.site, 'not found');
 };
 
-const toWholeHTML = (title: string, content: string): string => {
+const toWholeHTML = (site: Site, content: string): string => {
   const styles = getStyles();
   const html = `
   <!DOCTYPE html>
@@ -51,9 +51,9 @@ const toWholeHTML = (title: string, content: string): string => {
     <head>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
-      <title>${title}</title>
+      <title>${site.title}</title>
       <link rel="alternate" type="application/atom+xml" href="/feed" />
-      <link rel="icon" href="https://waka.github.io/assets/images/favicon.ico" />
+      <link rel="icon" href="${site.faviconURL}" />
       <style>${styles}</style>
     </head>
     <body>${content}</body>

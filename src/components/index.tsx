@@ -12,6 +12,7 @@ type Props = {
 
 const Index = ({ issues, site }: Props) => {
   const issue = issues.splice(0, 1)[0];
+
   return (
     <Layout site={site}>
       <section>
@@ -23,7 +24,7 @@ const Index = ({ issues, site }: Props) => {
       </section>
       <section>
         <h2>About</h2>
-        <About />
+        <About iconURL={site.iconURL} />
       </section>
     </Layout>
   );

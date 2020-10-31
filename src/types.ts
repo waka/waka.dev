@@ -1,6 +1,8 @@
 export interface Site {
   title: string,
-  author: string
+  author: string,
+  faviconURL: string,
+  iconURL: string
 };
 
 export interface GitHub {
