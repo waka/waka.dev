@@ -1,4 +1,5 @@
 const styles = `
+  /* Common */
   body {
     margin: 0;
     padding: 0;
@@ -8,7 +9,7 @@ const styles = `
     font-weight: 400;
     line-height: 1.5;
   }
-  h1, h2, h3, ul, p {
+  h1, h2, h3, h4, ul, p {
     margin: 0;
     padding: 0;
   }
@@ -26,6 +27,7 @@ const styles = `
     width: 100%;
     min-height: 100vh;
   }
+  /* Header */
   .header {
     width: 100%;
   }
@@ -66,6 +68,27 @@ const styles = `
     color: #363636;
     text-decoration: none;
   }
+  /* About */
+  .profile {
+    display: flex;
+    padding: .5rem 0;
+  }
+  .profile img {
+    width: 105px;
+    height: 105px;
+  }
+  .profile aside {
+    padding: 0 4rem;
+  }
+  .profile aside ul {
+    display: flex;
+    margin-top: .5em;
+    list-style: none;
+  }
+  .profile aside ul li {
+    margin-right: 1.5rem;
+  }
+  /* Footer */
   .footer {
     display: flex;
     align-items: center;
@@ -73,6 +96,7 @@ const styles = `
     min-height: 3.25rem;
     margin-top: auto;
   }
+  /* Section */
   section {
     display: block;
     width: auto;
@@ -86,6 +110,23 @@ const styles = `
     font-size: 1.6em;
     font-weight: 600;
   }
+  /* Entries */
+  .entries-item {
+    margin-bottom: 25px;
+  }
+  .entries-item h4 {
+    margin-bottom: .8em;
+  }
+  .entries-item h4 a {
+    color: #4a4a4a;
+  }
+  .entries-item h4 a:hover {
+    color: #3273dc;
+  }
+  .entries-item p {
+    font-size: .9em;
+  }
+  /* Entry */
   .entry-title {
     padding-top: 20px;
     padding-bottom: 40px;
@@ -99,6 +140,9 @@ const styles = `
   .entry-title h1 a {
     color: #4a4a4a;
   }
+  .entry-title h1 a:hover {
+    color: #3273dc;
+  }
   .entry-content p {
     margin: 0 0 1em;
     padding: .2em 0;
@@ -106,6 +150,7 @@ const styles = `
     font-size: 1.1em;
   }
   .entry-content pre {
+    margin: 0 0 1.2em;
     padding: 1.2em;
     line-height: 1.3;
     overflow: auto;

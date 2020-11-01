@@ -19,7 +19,8 @@ export interface Config {
 
 export interface Issue {
   title: string,
-  body: string,
+  bodyHTML: string,
+  bodyText: string,
   labels: string[],
   url: string
 };
@@ -31,6 +32,7 @@ interface LabelNode {
 export interface IssueNode {
   title: string,
   bodyHTML: string,
+  bodyText: string,
   labels: { nodes: LabelNode[] }
   url: string
 };

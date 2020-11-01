@@ -14,6 +14,7 @@ const ISSUES_QUERY = `
           ... on Issue {
             title,
             bodyHTML,
+            bodyText,
             labels(first:5) {
               nodes { name }
             },
@@ -41,6 +42,7 @@ const ISSUE_QUERY = `
           ... on Issue {
             title,
             bodyHTML,
+            bodyText,
             labels(first:5) {
               nodes { name }
             },
@@ -95,7 +97,8 @@ const getIssue = async (title: string, github: GitHub): Promise<Issue | null> =>
 const nodeToIssue = (node: IssueNode): Issue => {
   return {
     title: node.title,
-    body: node.bodyHTML,
+    bodyHTML: node.bodyHTML,
+    bodyText: node.bodyText,
     labels: node.labels.nodes.map(n => n.name),
     url: node.url
   };

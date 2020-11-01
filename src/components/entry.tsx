@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Entry = ({ issue }: Props) => {
-  const html = { __html: issue.body };
+  const html = { __html: issue.bodyHTML };
   return (
     <div className="entry">
       <div className="entry-title">
