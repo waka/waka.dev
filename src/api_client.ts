@@ -18,7 +18,8 @@ const ISSUES_QUERY = `
             labels(first:5) {
               nodes { name }
             },
-            url
+            url,
+            createdAt
           }
         }
       },
@@ -46,7 +47,8 @@ const ISSUE_QUERY = `
             labels(first:5) {
               nodes { name }
             },
-            url
+            url,
+            createdAt
           }
         }
       }
@@ -95,12 +97,14 @@ const getIssue = async (title: string, github: GitHub): Promise<Issue | null> =>
 };
 
 const nodeToIssue = (node: IssueNode): Issue => {
+  const pubDate = (new Date(node.createdAt)).toUTCString();
   return {
     title: node.title,
     bodyHTML: node.bodyHTML,
     bodyText: node.bodyText,
     labels: node.labels.nodes.map(n => n.name),
-    url: node.url
+    url: node.url,
+    pubDate
   };
 };
 

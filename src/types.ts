@@ -1,6 +1,9 @@
 export interface Site {
   title: string,
+  description: string,
   author: string,
+  lastBuildDate: string,
+  siteURL: string,
   faviconURL: string,
   iconURL: string
 };
@@ -22,7 +25,8 @@ export interface Issue {
   bodyHTML: string,
   bodyText: string,
   labels: string[],
-  url: string
+  url: string,
+  pubDate: string
 };
 
 interface LabelNode {
@@ -34,7 +38,8 @@ export interface IssueNode {
   bodyHTML: string,
   bodyText: string,
   labels: { nodes: LabelNode[] }
-  url: string
+  url: string,
+  createdAt: string
 };
 
 interface Edge {

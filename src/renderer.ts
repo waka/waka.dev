@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { getIssues, getIssue } from './api_client';
+import { getFeed } from './feed';
 import { getStyles } from './styles';
 import Index from './components/index';
 import Archive from './components/archive';
@@ -13,7 +14,7 @@ const renderIndex = async (config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Index, { issues: issues.slice(0, 5), site: config.site })
   );
-  return toWholeHTML(config.site, content);
+  return toHTML(config.site, content);
 };
 
 const renderArchive = async (config: Config): Promise<string> => {
@@ -21,7 +22,7 @@ const renderArchive = async (config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Archive, { issues, site: config.site })
   );
-  return toWholeHTML(config.site, content);
+  return toHTML(config.site, content);
 };
 
 const renderShow = async (title: string, config: Config): Promise<string> => {
@@ -32,21 +33,22 @@ const renderShow = async (title: string, config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Show, { issue, site: config.site })
   );
-  return toWholeHTML(config.site, content);
+  return toHTML(config.site, content);
 };
 
-const renderFeed = (config: Config): string => {
-  return toWholeHTML(config.site, 'feed');
+const renderFeed = async (config: Config): Promise<string> => {
+  const issues = await getIssues(config.github);
+  const xml = getFeed(issues.slice(0, 20), config.site);
+  return xml;
 };
 
 const renderNotFound = (config: Config): string => {
-  return toWholeHTML(config.site, 'not found');
+  return toHTML(config.site, 'not found');
 };
 
-const toWholeHTML = (site: Site, content: string): string => {
+const toHTML = (site: Site, content: string): string => {
   const styles = getStyles();
-  const html = `
-  <!DOCTYPE html>
+  const html = `<!DOCTYPE html>
   <html>
     <head>
       <meta charSet="utf-8" />

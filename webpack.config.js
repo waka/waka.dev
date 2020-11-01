@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      "process.env.BUILD_DATE": JSON.stringify(process.env.BUILD_DATE),
       "process.env.GH_ACCESS_TOKEN": JSON.stringify(process.env.GH_ACCESS_TOKEN)
     })
   ],

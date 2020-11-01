@@ -3,7 +3,7 @@ import { NotFoundError } from './errors';
 import { renderIndex, renderArchive, renderShow, renderFeed, renderNotFound } from './renderer';
 import { Config } from './types';
 
-type Response = { response: string, status: number };
+type Response = { contentType: string, response: string, status: number };
 type RenderType = 'index'
   | 'archive'
   | 'show'
@@ -15,26 +15,37 @@ type RenderType = 'index'
  */
 const handleEvent = async (uri: string, config: Config): Promise<Response> => {
   const url = new URL(uri);
+  let contentType = '';
+  let response = '';
 
   try {
     switch (getRenderType(url.pathname)) {
       case 'index':
-        return { response: await renderIndex(config), status: 200 };
+        contentType = 'text/html';
+        response = await renderIndex(config);
+        break;
       case 'archive':
-        return { response: await renderArchive(config), status: 200 };
+        contentType = 'text/html';
+        response = await renderArchive(config);
+        break;
       case 'show':
+        contentType = 'text/html';
         const title = decodeURIComponent(path.basename(url.pathname));
-        return { response: await renderShow(title, config), status: 200 };
+        response = await renderShow(title, config);
+        break;
       case 'feed':
-        return { response: await renderFeed(config), status: 200 };
+        contentType = 'application/xml';
+        response = await renderFeed(config);
+        break;
       default:
         throw new NotFoundError();
     }
+    return { contentType, response, status: 200 };
   } catch (e) {
     if (e instanceof NotFoundError) {
-      return { response: renderNotFound(config), status: 404 };
+      return { contentType: 'text/html', response: renderNotFound(config), status: 404 };
     }
-    throw e;
+    return { contentType: 'text/html', response: e.message, status: 500 };
   }
 };
 
