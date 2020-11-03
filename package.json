@@ -14,8 +14,7 @@
   "license": "MIT",
   "author": "yo_waka <y.wakahara@gmail.com>",
   "scripts": {
-    "clean": "rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist && rimraf worker"
   },
   "dependencies": {
     "@octokit/graphql": "^4.5.6",
