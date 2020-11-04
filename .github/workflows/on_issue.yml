@@ -1,14 +1,12 @@
-name: Deploy to Cloudflare Workers
-
+name: Deploy on labeled/unlabeled issue
 on:
   issues:
     types:
       - labeled
       - unlabeled
-
 jobs:
   deploy:
-    name: Deploy
+    name: Checkout and Deploy
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -23,6 +21,7 @@ jobs:
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          environment: 'production'
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
