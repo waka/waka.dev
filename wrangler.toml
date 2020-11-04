@@ -6,4 +6,4 @@ webpack_config = "webpack.config.js"
 workers_dev = true
 
 [env.production]
-route = "waka.dev/*"
+route = "*waka.dev/*"
