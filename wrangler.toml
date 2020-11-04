@@ -1,6 +1,9 @@
 name = "blog"
 type = "webpack"
 webpack_config = "webpack.config.js"
+
+[env.dev]
 workers_dev = true
-route = ""
-zone_id = ""
+
+[env.production]
+route = "waka.dev/*"

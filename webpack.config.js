@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = {
   devtool: "cheap-module-source-map",
   target: "webworker",
-  mode: "development",
+  mode: process.env.NODE_ENV || "production",
   context: __dirname,
   entry: "./src/index.ts",
   module: {
