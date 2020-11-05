@@ -42,6 +42,11 @@ const renderFeed = async (config: Config): Promise<string> => {
   return xml;
 };
 
+const renderRobots = (): string => {
+  return `User-agent: *
+  Disallow:`;
+};
+
 const renderNotFound = (config: Config): string => {
   return toHTML(config.site, 'not found');
 };
@@ -69,5 +74,6 @@ export {
   renderArchive,
   renderShow,
   renderFeed,
+  renderRobots,
   renderNotFound
 };
