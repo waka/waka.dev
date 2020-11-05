@@ -4,6 +4,12 @@ webpack_config = "webpack.config.js"
 
 [env.dev]
 workers_dev = true
+kv_namespaces = [
+  { binding = "CACHED_RESPONSE", id = "d50e6b7d42cb4529a69795fcdea547e7" }
+]
 
 [env.production]
 route = "*waka.dev/*"
+kv_namespaces = [
+  { binding = "CACHED_RESPONSE", id = "a73df32e3f3f4711b4e8fd7c310764d9" }
+]

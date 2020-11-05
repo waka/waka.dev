@@ -1,4 +1,4 @@
-import { handleEvent } from './router';
+import { handleRequest } from './proxy';
 import { Config } from './types';
 
 const getConfig = (): Config => {
@@ -37,7 +37,7 @@ const getResponse = async (request: Request): Promise<Response> => {
       contentType,
       response,
       status
-    } = await handleEvent(request.url, config);
+    } = await handleRequest(request.url, config);
     return new Response(response, {
       status,
       headers: { 'content-type': contentType }
