@@ -10,20 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - name: Get current date
+      - name: Get BUILD_DATE
         id: date
         run: echo "::set-output name=BUILD_DATE::$(date '+%a, %d %b %Y %H:%M:%S GMT')"
-      - if: github.event.label == 'publish'
-        name: Checkout Repository
+      - name: Checkout Repository
+        if: github.event.label == 'publish'
         uses: actions/checkout@v2
-      - if: github.event.label == 'publish'
-        name: Publish Worker
+      - name: Publish Worker
+        if: github.event.label == 'publish'
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: 'production'
+          postCommands: |
+            echo "*** Clear cache ***"
+            wrangler kv:key list --binding=CACHED_RESPONSE | jq -r '. | map({key: .name, value: ""})' > cache.json
+            wrangler kv:bulk delete --binding=CACHED_RESPONSE cache.json
+            echo "******"
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
           BUILD_DATE: ${{ steps.date.outputs.BUILD_DATE }}
+      - name: Create Cache
+        run: |
+          curl https://waka.dev
+          curl https://waka.dev/archive
+          curl https://waka.dev/feed.xml

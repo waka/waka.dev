@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - name: Get current date
+      - name: Get BUILD_DATE
         id: date
         run: echo "::set-output name=BUILD_DATE::$(date '+%a, %d %b %Y %H:%M:%S GMT')"
       - name: Checkout Repository

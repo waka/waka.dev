@@ -55,7 +55,7 @@ const toHTML = (site: Site, content: string): string => {
       <meta name="viewport" content="width=device-width" />
       <meta name="description" content="${site.description}">
       <title>${site.title}</title>
-      <link rel="alternate" type="application/atom+xml" href="/feed" />
+      <link rel="alternate" type="application/atom+xml" href="/feed.xml" />
       <link rel="icon" href="${site.faviconURL}" />
       <style>${styles}</style>
     </head>
