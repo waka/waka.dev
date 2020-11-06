@@ -8,7 +8,13 @@ const About = ({ iconURL }: Props) => {
   return (
     <div className="about">
       <div className="profile">
-        <img src={`${iconURL}`} />
+        <img
+          src={`${iconURL}`}
+          srcSet={`${iconURL} 1x, ${iconTwiceURL} 2x ${iconThriceURL} 3x`}
+          width="105px"
+          height="105px"
+          alt="icon"
+        />
         <aside>
           <p>
             @yo_waka<br />

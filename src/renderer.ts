@@ -49,10 +49,11 @@ const renderNotFound = (config: Config): string => {
 const toHTML = (site: Site, content: string): string => {
   const styles = getStyles();
   const html = `<!DOCTYPE html>
-  <html>
+  <html lang="ja">
     <head>
-      <meta charSet="utf-8" />
+      <meta httpEquiv="content-type" content="text/html" charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
+      <meta name="description" content="${site.description}">
       <title>${site.title}</title>
       <link rel="alternate" type="application/atom+xml" href="/feed" />
       <link rel="icon" href="${site.faviconURL}" />
