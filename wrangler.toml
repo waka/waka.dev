@@ -5,7 +5,7 @@ webpack_config = "webpack.config.js"
 [env.dev]
 workers_dev = true
 kv_namespaces = [
-  { binding = "CACHED_RESPONSE", id = "d50e6b7d42cb4529a69795fcdea547e7" }
+  { binding = "CACHED_RESPONSE", id = "d50e6b7d42cb4529a69795fcdea547e7", preview_id = "6282b0fbc13a4ec796c4b0c82dcb5ecd" }
 ]
 
 [env.production]
