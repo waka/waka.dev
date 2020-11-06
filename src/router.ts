@@ -1,9 +1,8 @@
 import path from 'path';
 import { NotFoundError } from './errors';
 import { renderIndex, renderArchive, renderShow, renderFeed, renderNotFound } from './renderer';
-import { Config } from './types';
+import { Config, Response } from './types';
 
-type Response = { contentType: string, response: string, status: number };
 type RenderType = 'index'
   | 'archive'
   | 'show'
@@ -13,7 +12,7 @@ type RenderType = 'index'
 /**
  * Return text and status for response.
  */
-const handleEvent = async (uri: string, config: Config): Promise<Response> => {
+const handleRequest = async (uri: string, config: Config): Promise<Response> => {
   const url = new URL(uri);
   let contentType = '';
   let response = '';
@@ -65,4 +64,4 @@ const getRenderType = (pathname: string): RenderType => {
   return '';
 };
 
-export { handleEvent };
+export { handleRequest };

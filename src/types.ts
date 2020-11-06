@@ -63,3 +63,5 @@ export interface IssueResponse {
     edges: Edge[]
   }
 };
+
+export type Response = { contentType: string, response: string, status: number };
