@@ -14,7 +14,7 @@ const Entries = ({ issues }: Props) => {
           issue.bodyText;
         return (
           <div key={idx} className="entries-item">
-            <h4><a href={`/entry/${issue.title}`}>{issue.title}</a></h4>
+            <h3><a href={`/entry/${issue.title}`}>{issue.title}</a></h3>
             <p>{body}</p>
           </div>
         );

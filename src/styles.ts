@@ -114,13 +114,13 @@ const styles = `
   .entries-item {
     margin-bottom: 25px;
   }
-  .entries-item h4 {
+  .entries-item h3 {
     margin-bottom: .8em;
   }
-  .entries-item h4 a {
+  .entries-item h3 a {
     color: #4a4a4a;
   }
-  .entries-item h4 a:hover {
+  .entries-item h3 a:hover {
     color: #3273dc;
   }
   .entries-item p {
