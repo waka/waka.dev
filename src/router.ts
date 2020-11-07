@@ -1,12 +1,20 @@
 import path from 'path';
 import { NotFoundError } from './errors';
-import { renderIndex, renderArchive, renderShow, renderFeed, renderNotFound } from './renderer';
+import {
+  renderIndex,
+  renderArchive,
+  renderShow,
+  renderFeed,
+  renderRobots,
+  renderNotFound
+} from './renderer';
 import { Config, Response } from './types';
 
 type RenderType = 'index'
   | 'archive'
   | 'show'
   | 'feed'
+  | 'robots'
   | '';
 
 /**
@@ -36,6 +44,10 @@ const handleRequest = async (uri: string, config: Config): Promise<Response> => 
         contentType = 'application/xml';
         response = await renderFeed(config);
         break;
+      case 'robots':
+        contentType = 'text/plain';
+        response = renderRobots();
+        break;
       default:
         throw new NotFoundError();
     }
@@ -57,6 +69,9 @@ const getRenderType = (pathname: string): RenderType => {
   }
   if (pathname === '/feed' || pathname === '/feed.xml') {
     return 'feed';
+  }
+  if (pathname === '/robots.txt') {
+    return 'robots';
   }
   if (pathname.startsWith('/entry')) {
     return 'show';
