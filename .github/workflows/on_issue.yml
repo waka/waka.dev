@@ -36,6 +36,6 @@ jobs:
           BUILD_DATE: ${{ steps.date.outputs.BUILD_DATE }}
       - name: Create Cache
         run: |
-          curl https://waka.dev
-          curl https://waka.dev/archive
-          curl https://waka.dev/feed.xml
+          curl -D - -s -o /dev/null https://waka.dev
+          curl -D - -s -o /dev/null https://waka.dev/archive
+          curl -D - -s -o /dev/null https://waka.dev/feed.xml
