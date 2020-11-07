@@ -55,7 +55,7 @@ const getRenderType = (pathname: string): RenderType => {
   if (pathname === '/archive') {
     return 'archive';
   }
-  if (pathname === '/feed') {
+  if (pathname === '/feed' || pathname === '/feed.xml') {
     return 'feed';
   }
   if (pathname.startsWith('/entry')) {
