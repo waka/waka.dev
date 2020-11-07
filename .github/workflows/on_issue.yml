@@ -14,12 +14,13 @@ jobs:
         id: date
         run: echo "::set-output name=BUILD_DATE::$(date '+%a, %d %b %Y %H:%M:%S GMT')"
       - name: Checkout Repository
-        if: github.event.label == 'publish'
+        if: github.event.label == 'public'
         uses: actions/checkout@v2
       - name: Publish Worker
-        if: github.event.label == 'publish'
+        if: github.event.label == 'public'
         uses: cloudflare/wrangler-action@1.3.0
         with:
+          publish: false
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: 'production'
           postCommands: |
