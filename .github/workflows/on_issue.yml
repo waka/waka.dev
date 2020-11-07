@@ -14,19 +14,20 @@ jobs:
         id: date
         run: echo "::set-output name=BUILD_DATE::$(date '+%a, %d %b %Y %H:%M:%S GMT')"
       - name: Checkout Repository
-        if: github.event.label == 'public'
         uses: actions/checkout@v2
       - name: Publish Worker
         if: github.event.label == 'public'
         uses: cloudflare/wrangler-action@1.3.0
         with:
-          publish: false
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: 'production'
+          publish: false
+          preCommands: |
+            wrangler build --env=production
           postCommands: |
             echo "*** Clear cache ***"
-            wrangler kv:key list --binding=CACHED_RESPONSE | jq -r '. | map({key: .name, value: ""})' > cache.json
-            wrangler kv:bulk delete --binding=CACHED_RESPONSE cache.json
+            wrangler kv:key list --binding=CACHED_RESPONSE --env=production | xargs -0 -i node -pe '{}.map(a => { return {key: a.name, value: ""}; })' > cache.json
+            wrangler kv:bulk delete --env=production --binding=CACHED_RESPONSE cache.json
             echo "******"
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
