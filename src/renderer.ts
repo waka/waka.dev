@@ -14,7 +14,7 @@ const renderIndex = async (config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Index, { issues: issues.slice(0, 5), site: config.site })
   );
-  return toHTML(config.site, content);
+  return toHTML(config.site, config.site.title, content);
 };
 
 const renderArchive = async (config: Config): Promise<string> => {
@@ -22,7 +22,7 @@ const renderArchive = async (config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Archive, { issues, site: config.site })
   );
-  return toHTML(config.site, content);
+  return toHTML(config.site, `一覧 - ${config.site.title}`, content);
 };
 
 const renderShow = async (title: string, config: Config): Promise<string> => {
@@ -33,7 +33,7 @@ const renderShow = async (title: string, config: Config): Promise<string> => {
   const content = ReactDOMServer.renderToString(
     React.createElement(Show, { issue, site: config.site })
   );
-  return toHTML(config.site, content);
+  return toHTML(config.site, `${issue.title} - ${config.site.title}`, content);
 };
 
 const renderFeed = async (config: Config): Promise<string> => {
@@ -48,10 +48,10 @@ const renderRobots = (): string => {
 };
 
 const renderNotFound = (config: Config): string => {
-  return toHTML(config.site, 'not found');
+  return toHTML(config.site, config.site.title, '404 Not Found');
 };
 
-const toHTML = (site: Site, content: string): string => {
+const toHTML = (site: Site, title: string, content: string): string => {
   const styles = getStyles();
   const html = `<!DOCTYPE html>
   <html lang="ja">
@@ -59,7 +59,14 @@ const toHTML = (site: Site, content: string): string => {
       <meta httpEquiv="content-type" content="text/html" charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta name="description" content="${site.description}">
-      <title>${site.title}</title>
+      <meta property="description" content="${site.description}">
+      <meta property="og:description" content="${site.description}">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="${site.title}">
+      <meta property="og:url" content="${site.siteURL}">
+      <meta property="og:image" content="${site.iconURL}">
+      <meta property="twitter:card" content="summary">
+      <title>${title}</title>
       <link rel="alternate" type="application/atom+xml" href="/feed.xml" />
       <link rel="icon" href="${site.faviconURL}" />
       <style>${styles}</style>
