@@ -206,6 +206,15 @@ const styles = `
   }
   .entry-content ul {
     margin-left: 2em;
+    font-size: 1.1em;
+  }
+  @media screen and (max-width: 600px) {
+    .entry-content ul {
+      font-size: 1em;
+    }
+  }
+  .entry-content ul li {
+    margin-bottom: .1em;
   }
 `;
 
