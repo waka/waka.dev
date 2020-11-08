@@ -143,8 +143,18 @@ const styles = `
   .entry-title h1 a:hover {
     color: #3273dc;
   }
+  .entry-content h1 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+  .entry-content h2,
+  .entry-content h3,
+  .entry-content h4 {
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+  }
   .entry-content p {
-    margin: 0 0 1em;
+    margin: 0 0 .7em;
     padding: .2em 0;
     line-height: 1.8em;
     font-size: 1.1em;
