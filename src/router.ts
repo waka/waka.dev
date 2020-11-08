@@ -29,16 +29,16 @@ const handleRequest = async (uri: string, config: Config): Promise<Response> => 
     switch (getRenderType(url.pathname)) {
       case 'index':
         contentType = 'text/html';
-        response = await renderIndex(config);
+        response = await renderIndex(uri, config);
         break;
       case 'archive':
         contentType = 'text/html';
-        response = await renderArchive(config);
+        response = await renderArchive(uri, config);
         break;
       case 'show':
         contentType = 'text/html';
         const title = decodeURIComponent(path.basename(url.pathname));
-        response = await renderShow(title, config);
+        response = await renderShow(uri, title, config);
         break;
       case 'feed':
         contentType = 'application/xml';

@@ -1,4 +1,4 @@
-import { handleRequest } from './proxy';
+import { handleRequest } from './router';
 import { Config } from './types';
 
 const getConfig = (): Config => {
