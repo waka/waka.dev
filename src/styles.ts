@@ -2,7 +2,7 @@ const styles = `
   /* Common */
   body {
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
     background-color: #ffffff;
     color: #4a4a4a;
     font-size: 1em;
@@ -68,6 +68,11 @@ const styles = `
     color: #363636;
     text-decoration: none;
   }
+  @media screen and (max-width: 600px) {
+    .header > h1 {
+      font-size: 3em;
+    }
+  }
   /* About */
   .profile {
     display: flex;
@@ -79,6 +84,12 @@ const styles = `
   }
   .profile aside {
     padding: 0 4rem;
+  }
+  @media screen and (max-width: 600px) {
+    .profile aside {
+      padding: 0 1rem;
+      font-size: .9em;
+    }
   }
   .profile aside ul {
     display: flex;
@@ -99,10 +110,14 @@ const styles = `
   /* Section */
   section {
     display: block;
-    width: auto;
     width: 936px;
     margin: 0 auto 1.5rem;
     padding: 1rem 0;
+  }
+  @media screen and (max-width: 600px) {
+    section {
+      width: auto;
+    }
   }
   section > h2 {
     margin-bottom: 30px;
@@ -136,6 +151,7 @@ const styles = `
     font-family: 游明朝,Yu Mincho,YuMincho,Hiragino Mincho ProN,Hiragino Mincho Pro,HGS明朝E,メイリオ,Meiryo,serif;
     font-size: 2em;
     font-weight: 700;
+    line-height: 1.1em;
   }
   .entry-title h1 a {
     color: #4a4a4a;
@@ -158,6 +174,11 @@ const styles = `
     padding: .2em 0;
     line-height: 1.8em;
     font-size: 1.1em;
+  }
+  @media screen and (max-width: 600px) {
+    .entry-content p {
+      font-size: 1em;
+    }
   }
   .entry-content pre {
     margin: 0 0 1.2em;
