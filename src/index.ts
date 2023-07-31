@@ -1,7 +1,8 @@
 import { handleRequest } from './proxy';
-import { Config } from './types';
+import { Config, Env } from './types';
 
 const getConfig = (): Config => {
+  console.log(process.env);
   const lastBuildDate = process.env.BUILD_DATE;
   if (!lastBuildDate) {
     throw new Error('BUILD_DATE must be required.');
@@ -50,7 +51,9 @@ const getResponse = async (request: Request): Promise<Response> => {
   }
 };
 
-addEventListener(
-  'fetch',
-  (event: FetchEvent) => event.respondWith(getResponse(event.request))
-);
+export default {
+  async fetch(request: Request, _env: Env, _ctx: ExecutionContext): Promise<Response> {
+    console.log('Hi');
+    return getResponse(request);
+  }
+}

@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 
 module.exports = {
-  target: "webworker",
   mode: process.env.NODE_ENV || "production",
   context: __dirname,
   entry: "./src/index.ts",

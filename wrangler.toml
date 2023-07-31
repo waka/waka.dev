@@ -1,4 +1,5 @@
 name = "blog"
+node_compat = true
 type = "webpack"
 webpack_config = "webpack.config.js"
 

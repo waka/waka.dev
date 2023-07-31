@@ -1,3 +1,7 @@
+export interface Env {
+  CACHED_RESPONSE: KVNamespace
+};
+
 export interface Site {
   title: string,
   description: string,

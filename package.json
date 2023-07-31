@@ -14,10 +14,13 @@
   "license": "MIT",
   "author": "yo_waka <y.wakahara@gmail.com>",
   "scripts": {
-    "clean": "rimraf dist && rimraf worker"
+    "build": "npm run clean && webpack",
+    "start": "wrangler dev dist/main.js",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "@octokit/graphql": "^7.0.1",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -29,7 +32,7 @@
     "rimraf": "*",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
-    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
     "wrangler": "^3.4.0"
   }
 }
