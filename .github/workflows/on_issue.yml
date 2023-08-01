@@ -25,16 +25,11 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: 'production'
           publish: false
-          preCommands: |
-            wrangler build --env=production
           postCommands: |
             echo "*** Clear cache ***"
             wrangler kv:key list --binding=CACHED_RESPONSE --env=production | xargs -0 -i node -pe 'JSON.stringify({}.map(a => { return a.name; }))' > cache.json
             echo "y"|wrangler kv:bulk delete --env=production --binding=CACHED_RESPONSE cache.json
             echo "******"
-        env:
-          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-          BUILD_DATE: ${{ steps.date.outputs.BUILD_DATE }}
       - name: Create Cache
         run: |
           curl -D - -s -o /dev/null https://waka.dev
