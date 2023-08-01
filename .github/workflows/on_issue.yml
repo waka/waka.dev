@@ -29,7 +29,7 @@ jobs:
             wrangler build --env=production
           postCommands: |
             echo "*** Clear cache ***"
-            wrangler kv:key list --binding=CACHED_RESPONSE --env=production | xargs -0 -i node -pe 'JSON.stringify({}.map(a => { return {"key": a.name, "value": ""}; }))' > cache.json
+            wrangler kv:key list --binding=CACHED_RESPONSE --env=production | xargs -0 -i node -pe 'JSON.stringify({}.map(a => { return a.name; }))' > cache.json
             echo "y"|wrangler kv:bulk delete --env=production --binding=CACHED_RESPONSE cache.json
             echo "******"
         env:
