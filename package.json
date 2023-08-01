@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "yo_waka <y.wakahara@gmail.com>",
   "scripts": {
-    "clean": "rimraf dist"
+    "clean": "rimraf dist .wrangler"
   },
   "dependencies": {
     "@octokit/graphql": "^7.0.1",

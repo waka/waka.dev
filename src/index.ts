@@ -37,7 +37,7 @@ const getResponse = async (request: Request, env: Env): Promise<Response> => {
       contentType,
       response,
       status
-    } = await handleRequest(request.url, config);
+    } = await handleRequest(request.url, config, env);
     return new Response(response, {
       status,
       headers: { 'content-type': contentType }
