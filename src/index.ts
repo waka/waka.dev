@@ -1,13 +1,12 @@
 import { handleRequest } from './proxy';
 import { Config, Env } from './types';
 
-const getConfig = (): Config => {
-  console.log(process.env);
-  const lastBuildDate = process.env.BUILD_DATE;
+const getConfig = (env: Env): Config => {
+  const lastBuildDate = env.BUILD_DATE;
   if (!lastBuildDate) {
     throw new Error('BUILD_DATE must be required.');
   }
-  const accessToken = process.env.GH_ACCESS_TOKEN;
+  const accessToken = env.GH_ACCESS_TOKEN;
   if (!accessToken) {
     throw new Error('GH_ACCESS_TOKEN must be required.');
   }
@@ -31,9 +30,9 @@ const getConfig = (): Config => {
   };
 };
 
-const getResponse = async (request: Request): Promise<Response> => {
+const getResponse = async (request: Request, env: Env): Promise<Response> => {
   try {
-    const config = getConfig();
+    const config = getConfig(env);
     const {
       contentType,
       response,
@@ -52,8 +51,7 @@ const getResponse = async (request: Request): Promise<Response> => {
 };
 
 export default {
-  async fetch(request: Request, _env: Env, _ctx: ExecutionContext): Promise<Response> {
-    console.log('Hi');
-    return getResponse(request);
+  async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
+    return getResponse(request, env);
   }
 }

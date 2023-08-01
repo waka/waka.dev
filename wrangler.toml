@@ -1,7 +1,6 @@
 name = "blog"
 node_compat = true
-type = "webpack"
-webpack_config = "webpack.config.js"
+compatibility_date = "2023-07-24"
 
 [env.dev]
 workers_dev = true
