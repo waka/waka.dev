@@ -11,7 +11,7 @@ kv_namespaces = [
 ]
 
 [env.production]
-route = "*waka.dev/*"
+route = { pattern = "*waka.dev/*", zone_name = "waka.dev" }
 kv_namespaces = [
   { binding = "CACHED_RESPONSE", id = "a73df32e3f3f4711b4e8fd7c310764d9" }
 ]

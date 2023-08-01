@@ -9,3 +9,9 @@ The source of [waka.dev](https://waka.dev).
 ```
 $ npx wrangler dev src/index.ts --env dev --var BUILD_DATE:$(date -d day '+%Y-%m-%d') GH_ACCESS_TOKEN:$(YOUR_GITHUB_ACCESS_TOKEN)
 ```
+
+## Deploy worker manually
+
+```
+$ npx wrangler deploy --env production --var BUILD_DATE:$(date -d day '+%Y-%m-%d') GH_ACCESS_TOKEN:$(YOUR_YOUR_GITHUB_ACCESS_TOKEN)
+```
