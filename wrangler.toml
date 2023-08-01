@@ -2,6 +2,8 @@ name = "blog"
 node_compat = true
 compatibility_date = "2023-07-24"
 
+main = "src/index.ts"
+
 [env.dev]
 workers_dev = true
 kv_namespaces = [
