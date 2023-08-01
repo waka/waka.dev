@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Install dependencies
-        uses: npm install
+        run: npm install
       - name: Publish Worker
         uses: cloudflare/wrangler-action@2.0.0
         with:
