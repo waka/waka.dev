@@ -1,12 +1,12 @@
 import { handleRequest } from './proxy';
-import { Config } from './types';
+import { Config, Env } from './types';
 
-const getConfig = (): Config => {
-  const lastBuildDate = process.env.BUILD_DATE;
+const getConfig = (env: Env): Config => {
+  const lastBuildDate = env.BUILD_DATE;
   if (!lastBuildDate) {
     throw new Error('BUILD_DATE must be required.');
   }
-  const accessToken = process.env.GH_ACCESS_TOKEN;
+  const accessToken = env.GH_ACCESS_TOKEN;
   if (!accessToken) {
     throw new Error('GH_ACCESS_TOKEN must be required.');
   }
@@ -30,14 +30,14 @@ const getConfig = (): Config => {
   };
 };
 
-const getResponse = async (request: Request): Promise<Response> => {
+const getResponse = async (request: Request, env: Env): Promise<Response> => {
   try {
-    const config = getConfig();
+    const config = getConfig(env);
     const {
       contentType,
       response,
       status
-    } = await handleRequest(request.url, config);
+    } = await handleRequest(request.url, config, env);
     return new Response(response, {
       status,
       headers: { 'content-type': contentType }
@@ -50,7 +50,8 @@ const getResponse = async (request: Request): Promise<Response> => {
   }
 };
 
-addEventListener(
-  'fetch',
-  (event: FetchEvent) => event.respondWith(getResponse(event.request))
-);
+export default {
+  async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
+    return getResponse(request, env);
+  }
+}

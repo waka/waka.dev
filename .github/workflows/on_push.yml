@@ -15,8 +15,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Publish Worker
-        uses: cloudflare/wrangler-action@1.3.0
+        uses: cloudflare/wrangler-action@2.0.0
         with:
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: 'production'
           postCommands: |
@@ -25,8 +26,6 @@ jobs:
             echo "y"|wrangler kv:bulk delete --env=production --binding=CACHED_RESPONSE cache.json
             echo "******"
         env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
           BUILD_DATE: ${{ steps.date.outputs.BUILD_DATE }}
       - name: Create Cache

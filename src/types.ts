@@ -1,3 +1,9 @@
+export interface Env {
+  CACHED_RESPONSE: KVNamespace,
+  BUILD_DATE: string,
+  GH_ACCESS_TOKEN: string
+};
+
 export interface Site {
   title: string,
   description: string,
