@@ -28,6 +28,6 @@
     "@cloudflare/workers-types": "^4.2",
     "rimraf": "*",
     "typescript": "^5.1.6",
-    "wrangler": "^3.4.0"
+    "wrangler": "^4.53.0"
   }
 }
