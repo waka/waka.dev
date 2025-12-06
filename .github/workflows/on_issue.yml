@@ -14,17 +14,17 @@ jobs:
         id: date
         run: echo "::set-output name=BUILD_DATE::$(date '+%a, %d %b %Y %H:%M:%S GMT')"
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: npm install
       - name: Publish Worker
         if: github.event.label.name == 'public'
-        uses: cloudflare/wrangler-action@2.0.0
+        uses: cloudflare/wrangler-action@v3
         with:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: "production"
-          command: whoami
+          command: whoami --env production
           postCommands: |
             echo "*** Clear cache ***"
             wrangler kv:key list --binding=CACHED_RESPONSE --env=production | xargs -0 -i node -pe 'JSON.stringify({}.map(a => { return a.name; }))' > cache.json
