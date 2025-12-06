@@ -1,6 +1,6 @@
 name = "blog"
 node_compat = true
-compatibility_date = "2023-07-24"
+compatibility_date = "2024-12-05"
 
 main = "src/index.ts"
 
