@@ -216,6 +216,24 @@ const styles = `
   .entry-content ul li {
     margin-bottom: .1em;
   }
+  .entry-content table {
+    display: block;
+    width: 100%;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+  }
+  .entry-content table tr {
+    border-top: 1px solid #e0e0e0;
+  }
+  .entry-content table th {
+    border: 1px solid #e0e0e0;
+  }
+  .entry-content table td {
+    padding: 6px 13px;
+    border: 1px solid #e0e0e0;
+  }
 `;
 
 const getStyles = (): string => styles;
